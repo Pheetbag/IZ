@@ -1,50 +1,39 @@
-<?php
+<?php include_head('CDA - Ingresar'); ?>
+<link rel="stylesheet" href="<?php echo HTTP ?>/vistas/ingresar/style.css?v=0.2">
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+  <!-- or -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+<body>
 
-//Librerias y archivos importantes
-date_default_timezone_set('America/Caracas');
+<div class="contenedor">
 
-require 'libs/path.php';
-require 'libs/iniciador.php';
-require 'libs/includes.php';
-require 'libs/regexp.php';
-require 'libs/control_db.php';
 
-// ---------------------------------
+    <div class="box" id="login" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Entrar</h5>
+            <p class="card-text">
+                <form method='post' action='ingresar/validar'>
 
-/*
-constantes con los datos para generar redirecciones
+                    <div class="form-group">
+                        <input type="text" class="form-control <?php echo $vista_errores; ?>" id="usuario" name="usuario" aria-describedby="usuarioHelp" placeholder="Usuario">
+                    </div>
 
-HOST contiene la dirección del host, sin ningún tipo de fichero
+                    <div class="form-group">
+                        <input type="password" class="form-control <?php echo $vista_errores; ?>" id="contraseña" name="contraseña" placeholder="Contraseña">
+                    </div>
 
-HTTP contiene el host con el protocolo http, e incluyendo el fichero en el que vive el proyecto
+                    <button type="submit" class="button is-primary is-large is-fullwidth">Entrar</button>
+                </form>
+            </p>
+        </div>
+    </div>
+</div>
 
-HTTP_PHP se utiliza para generar redirecciones a través de los archivos del codigo, es una variante de HTTP pues php no soporta el protocolo http para navegar a través de arhivos.
-*/
-define ("HOST", $_SERVER['HTTP_HOST'] . '/iz');
-define ("HTTP", 'http://' . HOST);
-define ("HTTP_PHP", $_SERVER['DOCUMENT_ROOT']. '/');
+<?php include_footer(); ?>
+<script src="<?php echo HTTP ?>/vistas/ingresar/script.js?v=0"></script>
 
-/*
-IMPORTANTE!
-
-En caso de que el sistema se esté ejecutando en el directorio raiz del localhost o en un virtual host, se puede dejar estas variables
-tal como están.
-
-Si el sistema en cambio se esta ejecutando desde una subcarpeta de el servidor, (por ejemplo una carpeta cda dentro de el htdocs o el www, y el url de acceso a a través de localhost/cda) se debe indicar en el string vacio  al final HOST, el nombre de la subcarpeta iniciando con un /, por ejemplo "/subcarpeta1/subcarpeta2" y esto le inidica al sistema que se encuentra dentro de la subcarpeta2 que esta dentro de la subcarpeta1 que esta dentro de el directorio raiz, o local host (htdocs o www según el caso).
-*/
-
-//iniciamos / refrescamos la sesión, en caso de que exista
-session_start();
-
-//----------------------------------
-
-//Constantes para conexiones a bases de datos
-require 'modelos/config.php';
-
-//Llamamos a la función de verificación de estado de la base de datos. Esta función se asegura de que la base de datos exista, en caso de que la misma no exista
-
-estado_db();
-
-//Llamamos al iniciador de la aplicación, que fue requerido desde libs/
-
-$app = new iniciador();
+</body>
+</html>
