@@ -1,4 +1,4 @@
-<?php include_head('CDA - Inventario'); ?>
+<?php include_head('IZ - Inventario'); ?>
 
 <link rel="stylesheet" href="<?php echo HTTP ?>/vistas/inventario/style.css?v=0.7">
 </head>
@@ -6,9 +6,32 @@
 
 <?php include_header('inventario','Inventario'); ?>
 
-<main class="container-fluid nav-spaced full-screen" id="navPush">
-    <div class="row">
-        <div class="col-md-3 col-sm-12">
+<main class="nav-spaced full-screen" id="navPush ">
+
+	<!-- <div class="columns">
+		<div class="column is-10-tablet is-offset-1">
+
+			<div class="card">
+
+				<form novalidate class="validar card-content" action="<?php echo HTTP ?>/inventario/buscar" method="GET">
+
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input required type="text" name="busqueda" id="" class="input" placeholder="Buscar producto">
+						</div>
+						<div class="control">
+							<button type="submit" class="button is-primary">Buscar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div> -->
+
+    <div class="columns">
+
+        <!-- <div class="column">
 
             <div class="card mb-4">
                 <h6 class="card-header">Buscar</h6>
@@ -23,84 +46,130 @@
                 </form>
             </div>
 
-<!-- ESTO SE ELIMINO, SE DEJA COMENTADO EN CASO DE UTILIDAD FUTURA -->
+ ESTO SE ELIMINO, SE DEJA COMENTADO EN CASO DE UTILIDAD FUTURA
 
-            <!-- <div class="card">
+            <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Nuevo producto</h6>
                     <small class="card-text">Registra un nuevo producto en el inventario.</small>
                     <a class="btn btn-primary mt-3 d-block" href="/registrar/producto">Crear nuevo</a>
                 </div>
-            </div> -->
+            </div>
 
-        </div>
-        <div class="col-md-9 col-sm-12">
-            <div class="card">
-                <h6 class="card-header">Productos</h6>
-                <ul class="list-group list-group-flush">
-                    <?php
+        </div> -->
+        <div class="column is-10-tablet is-offset-1">
+            <div class="box">
 
-                    if($resultado != null){
-                        foreach($resultado as $item){
+				<div class="columns">
 
-                            echo '
-                            <a href="'. HTTP .'/inventario/producto/'. $item['codigo_producto'] .'" class="list-group-item list-group-item-action container-fluid">
-                                <div class="row">
-                                    <div class="col-12 col-sm-4 left align-items-center align-items-sm-start">
-                                        <div class="font-weight-bold">'   . $item['nombre_producto'] . '</div>
-                                        <div>Modelo: '                    . $item['modelo_producto'] . '</div>
-                                    </div>
-                                    <div class="col-6 col-sm-4 left align-items-center align-items-sm-end">
-                                        <div class="text-muted">Tipo: '   . $item['tipo_producto']   . '</div>
-                                        <div class="text-muted">Marca: '  . $item['marca_producto']  . '</div>
-                                    </div>
-                                    <div class="col-6 col-sm-4 right align-items-center">
-                                        <div class="producto-precio text-success font-weight-bold">Bs. '. number_format( $item['precio_venta'] ,2,',', '.') .'</div>
-                                        <div class="producto-existencias text-muted">'. number_format( $item['existencias'] ,0,',', ' ') .' en stock</div>
-                                    </div>
-                                </div>
-                            </a>';
-                        }
-                    }else{
+					<div class="column is-narrow">
+						<a href="<?php echo HTTP ?>/registrar/producto" class="button is-link">Crear producto</a>
+					</div>
+
+					<div class="column">
+
+						<form novalidate class="validar" action="<?php echo HTTP ?>/inventario/buscar" method="GET">
+
+							<div class="field has-addons">
+								<div class="control">
+									<button type="submit" class="button is-primary">Buscar</button>
+								</div>
+								<div class="control is-expanded">
+									<input required type="text" name="busqueda" id="" class="input" placeholder="Buscar producto">
+								</div>
+							</div>
+						</form>
 
 
-                        echo'
+					</div>
 
-                            <div class="card-body center font-weight-bold text-center">
-                                <div class="ico-no-resultados"></div>
-                                No se han encontrado resultados.
-                            </div>
+				</div>
 
-                        ';
-                    }
-                    ?>
-                </ul>
+				<div class="columns">
+					<div class="column">
 
-                <div class="card-footer text-muted text-center">
-                    <ul class="pagination justify-content-center m-0">
-                        <li class="page-item <?php echo $anterior; ?>">
-                        <a class="page-link" href="<?php echo HTTP ?>/inventario/pag/<?php echo $anterior_link; ?>">Anterior</a>
-                        </li>
+						<ul class="">
+							<?php
 
-                        <?php
+							if($resultado != null){
+								foreach($resultado as $item){
 
-                        for($i = 0; $i < $paginacion; $i++){
+									if($item['marca_producto'] == null){
+										$item['marca_producto'] = 'Sin marca';
+									}
+									if($item['tipo_producto'] == null){
+										$item['tipo_producto'] = 'Sin tipo';
+									}
 
-                            $pagina_activa = null;
-                            if($i + 1 == $pagina){ $pagina_activa = 'active'; }
+									echo '
+									<a href="'. HTTP .'/inventario/producto/'. $item['codigo_producto'] .'" class="list-group-item list-group-item-action container-fluid">
+									<div class="row">
+									<div class="col-12 col-sm-4 left align-items-center align-items-sm-start">
+										<div class="has-text-dark is-size-5">'   . $item['nombre_producto'] . '</div>
+									</div>
+									<div class="col-6 col-sm-4 left align-items-center align-items-sm-end">
+										<div class=" has-text-success font-weight-bold">'. number_format( $item['precio_venta'] ,2,',', '.') .' Bolivares</div>
+										<div class="producto-existencias">'. number_format( $item['existencias'] ,0,',', ' ') .' en inventario</div>
 
-                            echo '
-                                <li class="page-item '. $pagina_activa .'"><a class="page-link" href="'. HTTP .'/inventario/pag/'. ($i + 1) .'">'. ($i + 1) .'</a></li>
-                            ';
-                        }
+									</div>
+									<div class="col-6 col-sm-4 right align-items-end">
+										<div class="tags has-addons">
+											<span class="tag is-success">Marca</span>
+											<span class="tag is-dark">'  . $item['marca_producto']  . '</span>
+										</div>
+										<div class="tags has-addons">
 
-                        ?>
+										<span class="tag is-primary">Tipo</span>
+										<span class="tag is-dark">'  . $item['tipo_producto']  . '</span>
 
-                        <li class="page-item <?php echo $siguiente; ?>">
-                        <a class="page-link" href="<?php echo HTTP ?>/inventario/pag/<?php echo $siguiente_link; ?>">Siguiente</a>
-                        </li>
-                    </ul>
-                </div>
+										</div>
+									</div>
+									</div>
+									</a>';
+								}
+							}else{
+
+
+								echo'
+								<div class="card-body center font-weight-bold text-center">
+								No hay ningún producto en el inventario.
+								</div>
+
+								';
+							}
+							?>
+						</p>
+
+
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column pagination is-centered is-rounded">
+
+
+						<ul class="pagination-list">
+
+							<?php
+
+							for($i = 0; $i < $paginacion; $i++){
+
+								$pagina_activa = null;
+								if($i + 1 == $pagina){ $pagina_activa = 'is-current'; }
+
+								echo '
+								<li><a class="pagination-link '. $pagina_activa .'" href="'. HTTP .'/inventario/pag/'. ($i + 1) .'">'. ($i + 1) .'</a></li>
+								';
+							}
+
+							?>
+						</ul>
+
+						<a href="<?php echo HTTP ?>/inventario/pag/<?php echo $anterior_link; ?>" class="pagination-previous  <?php echo $anterior; ?>">Anterior</a>
+						<a href="<?php echo HTTP ?>/inventario/pag/<?php echo $siguiente_link; ?>" class="pagination-next <?php echo $siguiente; ?>">Siguiente</a>
+
+					</div>
+				</div>
             </div>
         </div>
     </div>

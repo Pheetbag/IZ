@@ -1,6 +1,8 @@
 <?php
 
-function include_head($title = 'Sistema CDA'){
+$nombre_empresa = 'Inversiones Zamora';
+
+function include_head($title = 'IZ'){
     echo '
 
     <!DOCTYPE html>
@@ -12,13 +14,15 @@ function include_head($title = 'Sistema CDA'){
             <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
             <title>'. $title .'</title>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-            <link rel="shortcut icon" href="' . HTTP . '/recursos/cda-logosmall.png" type="image/png" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
             <link rel="stylesheet" href="'    . HTTP . '/vistas/defaults/defaults.css?v=0.15">
 
     ';
 }
 
 function include_header($activo = null, $title = 'Titulo', $subtitle = ''){
+
+	global $nombre_empresa;
 
 	$alerta = null;
 
@@ -33,6 +37,7 @@ function include_header($activo = null, $title = 'Titulo', $subtitle = ''){
 		</div>';
 	}
 
+/*
 	echo '
 	<div class="modal fade" tabindex="-1" id="ajustes-usuario">
 	    <div class="modal-dialog modal-dialog-centered">
@@ -86,7 +91,7 @@ function include_header($activo = null, $title = 'Titulo', $subtitle = ''){
 	</div>
 	';
 
-
+*/
 
 	$usuario = null;
 
@@ -95,79 +100,68 @@ function include_header($activo = null, $title = 'Titulo', $subtitle = ''){
 		$usuario = $_SESSION['usuario']['usuario'] ;
 	}
 
-    $inventario = '';
-    $factura    = '';
-    $pedidos    = '';
-    $reportes   = '';
-    $registrar  = '';
 
-    $pedidos_link    = 'href="'. HTTP . '/pedidos"';
-    $factura_link    = 'href="'. HTTP . '/facturar"';
-    $inventario_link = 'href="'. HTTP . '/inventario"';
-    $reportes_link   = 'href="'. HTTP . '/reportes"';
-    $registrar_link  = 'href="'. HTTP . '/registrar"';
+
+    $pedidos_link    = HTTP . '/pedidos"';
+    $factura_link    = HTTP . '/facturar"';
+    $inventario_link = HTTP . '/inventario"';
+    $reportes_link   = HTTP . '/reportes"';
+    $registrar_link  = HTTP . '/registrar"';
+
+	$inventario = '<a class="has-text-white" href="'. $inventario_link .'">Inventario</a>';
+    $factura    = '<a class="has-text-white" href="'. $factura_link    .'">Facturas</a>';
+    $pedidos    = '<a class="has-text-white" href="'. $pedidos_link    .'">Pedidos</a>';
+    $reportes   = '<a class="has-text-white" href="'. $reportes_link   .'">Reportes/a>';
+    $registrar  = '<a class="has-text-white" href="'. $registrar_link  .'">Registrar</a>';
 
     if(isset($activo)){
 
         switch($activo){
 
             case 'inventario':
-                $inventario  = 'activo';
+                $inventario  = '<a class="has-text-dark" href="'. $inventario_link .'"><strong>Inventario</strong></a>';
                break;
 
             case 'facturar':
-               $factura      = 'activo';
+               $factura      = '<a class="has-text-dark" href="'. $factura_link    .'"><strong>Facturas</strong></a>';
                break;
 
             case 'pedidos':
-               $pedidos      = 'activo';
+               $pedidos      = '<a class="has-text-dark" href="'. $pedidos_link    .'"><strong>Pedidos</strong></a>';
                break;
 
             case 'reportes':
-               $reportes     = 'activo';
+               $reportes     = '<a class="has-text-dark" href="'. $reportes_link   .'"><strong>Reportes</strong></a>';
                break;
 
             case 'registrar':
-               $registrar    = 'activo';
+               $registrar    = '<a class="has-text-dark" href="'. $registrar_link  .'"><strong>Registrar</strong></a>';
                break;
 		}
     }
 
     echo '
-        <nav>
-            <div class="body cerrado">
-                <div class="item main"><div></div></div>
-                <a '. $inventario_link .'><div class="item inventario ' . $inventario .'"><div data-toggle="tooltip" data-placement="left" title="Inventario"></div></div></a>
-                <a '. $factura_link    .'><div class="item factura '    . $factura    .'"><div data-toggle="tooltip" data-placement="left" title="Facturación"></div></div></a>
-                <a '. $pedidos_link    .'><div class="item pedidos '    . $pedidos    .'"><div data-toggle="tooltip" data-placement="left" title="Pedidos"></div></div></a>
-                <a '. $reportes_link   .'><div class="item reportes '   . $reportes   .'"><div data-toggle="tooltip" data-placement="left" title="Reportes"></div></div></a>
-                <a '. $registrar_link  .'><div class="item crear '      . $registrar  .'"><div data-toggle="tooltip" data-placement="left" title="Registrar"></div></div></a>
-            </div>
-        </nav>
 
-        <header class="mb-2">
-            <div class="title">
-                <h4>'. $title .'</h4>
-                <h6> '. $subtitle .'</h6>
-            </div>
+	<!-- Main container -->
+	<nav class="level p-2 has-background-primary ">
+	  <!-- Left side -->
+	  <div class="level-left has-text-white">
+	    <div class="level-item">
+	      <p class="subtitle is-5 has-text-white">
+	        <strong>IZ</strong> '.$nombre_empresa.'
+	      </p>
+	    </div>
+	  </div>
 
+	  <!-- Right side -->
+	  <div class="level-right has-text-white">
+	    <p class="level-item">' . $inventario .'</p>
+	    <p class="level-item">' . $pedidos    .'</p>
+	    <p class="level-item">' . $factura    .'</p>
+	    <p class="level-item"><a href="'. HTTP . '/salir" class="button is-danger has-text-white">Salir</a></p>
+	  </div>
+	</nav>
 
-
-            <div class="usuario">
-                <div class="menu">
-                    <div class="title">
-                        <div class="nombre"> '. $usuario .'</div>
-                        <div class="cerrar"></div>
-                    </div>
-                    <div class="contenido">
-					<!--<div class="item">Administración</div>-->
-                        <a href="'. HTTP .'/perfil" class="item" >Mi perfil</a>
-                        <div class="item" data-toggle="modal" data-target="#ajustes-usuario">Ajustes</div>
-                        <a href="'. HTTP . '/salir' .'"><div class="item salir">Desconectar</div></a>
-                    </div>
-                </div>
-            </div>
-        </header>
     ';
 }
 

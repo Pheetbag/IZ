@@ -10,107 +10,73 @@
 <div class="row">
     <form class="col-md-8 col-lg-7 col-xl-6 container-fluid validar" method="POST" action="#" novalidate>
 
-        <div class="row">
-            <div class="col-sm-5 mb-3">
-                <div class="card bg-light">
-                    <h6 class="card-header">Nombre</h6>
-                    <div class="card-body">
-                        <input required type="text" class="form-control bg-light" name="nombre" placeholder="Nombre">
-						<div class="invalid-feedback">
-						  Ingrese un nombre de producto válido.
-						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-5 mb-3">
-                <div class="card bg-light">
-                    <h6 class="card-header">Tipo</h6>
-                    <div class="card-body">
-                        <input type="text" class="form-control bg-light" name="tipo" placeholder="Tipo">
-						<div class="invalid-feedback">
-						  Ingrese un tipo de producto válido.
-						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-5 mb-3">
-                <div class="card bg-light">
-                    <h6 class="card-header">Marca</h6>
-                    <div class="card-body">
-                        <input type="text" class="form-control bg-light" name="marca" placeholder="Marca">
-						<div class="invalid-feedback">
-						  Ingrese una marca de producto válida.
-						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-5 mb-3">
-                <div class="card bg-light">
-                    <h6 class="card-header">Modelo</h6>
-                    <div class="card-body">
-	                    <input type="text" class="form-control bg-light" min="0" name="modelo" placeholder="Modelo">
-						<div class="invalid-feedback">
-						  Ingrese un modelo de producto válido.
-						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                    </div>
-                </div>
-            </div>
 
 
-        </div>
+					<div class="columns">
+						<div class="column">
 
-            <div class="row">
-            <div class="col-sm-5 mb-3">
-                    <div class="card bg-light">
-                        <h6 class="card-header">Precio</h6>
-                        <div class="card-body">
-                        	<input required type="number" class="form-control bg-light" min="0" step="0.01" name="precio" placeholder="Precio">
-							<div class="invalid-feedback">
-							  Ingrese un precio de producto válido.
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">
+										Registrar producto
+									</div>
+								</div>
+								<div class="card-content">
+
+
+									<div class="columns">
+										<strong class="column">Nombre:</strong>
+										<div class="column">
+											<input required type="text" class="form-control bg-light" name="nombre" placeholder="Nombre">
+
+										</div>
+									</div>
+									<div class="columns">
+										<strong class="column">Tipo:</strong>
+										<div class="column">
+
+											<input type="text" class="form-control bg-light" name="tipo" placeholder="Tipo">
+
+										</div>
+									</div>
+									<div class="columns">
+										<strong class="column">Marca:</strong>
+										<div class="column">
+
+											<input type="text" class="form-control bg-light" name="marca" placeholder="Marca">
+											<input type="text" class="form-control bg-light sr-only" min="0" name="modelo" placeholder="Modelo" value="sin modelo">
+
+										</div>
+									</div>
+									<div class="columns">
+										<strong class="column">Inventario:</strong>
+										<div class="column">
+
+											<input required type="number" class="form-control bg-light" min="0" name="existencias" placeholder="Existencias">
+
+										</div>
+									</div>
+									<div class="columns">
+										<strong class="column">Precio:</strong>
+										<div class="column has-text-success">
+
+					                        <input required type="number" class="form-control bg-light" min="0" step="0.01" name="precio" placeholder="Precio">
+
+										</div>
+									</div>
+
+								</div>
+
 							</div>
-							<div class="valid-feedback">
-							  ¡Perfecto!
-							</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-5 mb-3">
-                    <div class="card bg-light">
-                        <h6 class="card-header">Existencias</h6>
-                        <div class="card-body">
-                        <input required type="number" class="form-control bg-light" min="0" name="existencias" placeholder="Existencias">
-						<div class="invalid-feedback">
-						  Ingrese un número de existencias válido.
+
 						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10">
-                    <button type="submit" name="nuevo-producto" class="btn btn-primary btn-block py-2">Registrar producto</button>
-                </div>
-            </div>
+					</div>
+
+					<div class="row">
+		                <div class="col-sm-10">
+		                    <button type="submit" name="nuevo-producto" class="button is-primary is-fullwidth">Registrar producto</button>
+		                </div>
+		            </div>
     </form>
 </div>
 

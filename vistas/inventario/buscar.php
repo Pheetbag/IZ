@@ -1,4 +1,4 @@
-<?php include_head('CDA - Inventario'); ?>
+<?php include_head('Inventario | IZ'); ?>
 
 <link rel="stylesheet" href="<?php echo HTTP ?>/vistas/inventario/style.css?v=0.7">
 </head>
@@ -7,90 +7,128 @@
 <?php include_header('inventario','Inventario', 'Buscar'); ?>
 
 <main class="container-fluid nav-spaced full-screen" id="navPush">
-    <div class="row">
 
-        <div class="col-md-9 col-sm-12">
+    <div class="columns">
 
-            <div class="card mb-3">
-                <form novalidate class="validar card-body mb-0" action="<?php echo HTTP ?>/inventario/buscar" method="GET">
-                    <div class="form-group mb-0 d-sm-flex justify-content-around">
-                        <input required type="text" name="busqueda" id="" class="form-control col-sm-9 col-12" placeholder="Buscar producto" value="<?php echo $busqueda ?>">
-                        <button type="submit" class="btn btn-primary btn-sm col-sm-2 col-12 mt-2 mt-sm-0">Buscar</button>
-                    </div>
-                </form>
-            </div>
+		<div class="column is-10-tablet is-offset-1">
+            <div class="box">
 
-            <div class="card">
-                <ul class="list-group list-group-flush">
+				<div class="columns">
 
-                    <?php
+					<div class="column is-narrow">
+						<a href="<?php echo HTTP ?>/registrar/producto" class="button is-link">Crear producto</a>
+					</div>
 
-                    if($resultado != null){
+					<div class="column">
 
-                        foreach($resultado as $item){
+						<form novalidate class="validar" action="<?php echo HTTP ?>/inventario/buscar" method="GET">
 
-                            echo '
-                            <a href="'. HTTP .'/inventario/producto/'. $item['codigo_producto'] .'" class="list-group-item list-group-item-action container-fluid">
-                                <div class="row">
-                                    <div class="col-12 col-sm-4 left align-items-center align-items-sm-start">
-                                        <div class="font-weight-bold">'   . $item['nombre_producto'] . '</div>
-                                        <div>Modelo: '                    . $item['modelo_producto'] . '</div>
-                                    </div>
-                                    <div class="col-6 col-sm-4 left align-items-center align-items-sm-end">
-                                        <div class="text-muted">Tipo: '   . $item['tipo_producto']   . '</div>
-                                        <div class="text-muted">Marca: '  . $item['marca_producto']  . '</div>
-                                    </div>
-                                    <div class="col-6 col-sm-4 right align-items-center">
-                                        <div class="producto-precio text-success font-weight-bold">Bs. '. number_format( $item['precio_venta'] ,2,',', '.') .'</div>
-                                        <div class="producto-existencias text-muted">'. number_format( $item['existencias'] ,0,',', ' ') .' en stock</div>
-                                    </div>
-                                </div>
-                            </a>';
-                        }
+							<div class="field has-addons">
+								<div class="control">
+									<button type="submit" class="button is-primary">Buscar</button>
+								</div>
+								<div class="control is-expanded">
+									<input required placeholder="Buscar producto" value="<?php echo $busqueda ?>" type="text" name="busqueda"  class="input">
+								</div>
+							</div>
+						</form>
 
-                    }else{
 
-                        echo'
+					</div>
 
-                            <div class="card-body center font-weight-bold text-center">
-                                <div class="ico-no-resultados"></div>
-                                No se han encontrado resultados.
-                            </div>
+				</div>
 
-                        ';
+				<div class="columns">
+					<div class="column">
 
-                    }
+						<ul class="">
+							<?php
 
-                    ?>
-                </ul>
+							if($resultado != null){
+								foreach($resultado as $item){
 
-                <div class="card-footer text-muted text-center">
-                    <ul class="pagination justify-content-center m-0">
-                        <li class="page-item <?php echo $anterior; ?>">
-                        <a class="page-link" href="<?php echo HTTP ?>/inventario/buscar/<?php echo $anterior_link; ?>?busqueda=<?php echo $busqueda_url ?>">Anterior</a>
-                        </li>
+									if($item['marca_producto'] == null){
+										$item['marca_producto'] = 'Sin marca';
+									}
+									if($item['tipo_producto'] == null){
+										$item['tipo_producto'] = 'Sin tipo';
+									}
 
-                        <?php
+									echo '
+									<a href="'. HTTP .'/inventario/producto/'. $item['codigo_producto'] .'" class="list-group-item list-group-item-action container-fluid">
+									<div class="row">
+									<div class="col-12 col-sm-4 left align-items-center align-items-sm-start">
+										<div class="has-text-dark is-size-5">'   . $item['nombre_producto'] . '</div>
+									</div>
+									<div class="col-6 col-sm-4 left align-items-center align-items-sm-end">
+										<div class=" has-text-success font-weight-bold">'. number_format( $item['precio_venta'] ,2,',', '.') .' Bolivares</div>
+										<div class="producto-existencias">'. number_format( $item['existencias'] ,0,',', ' ') .' en inventario</div>
 
-                        for($i = 0; $i < $paginacion; $i++){
+									</div>
+									<div class="col-6 col-sm-4 right align-items-end">
+										<div class="tags has-addons">
+											<span class="tag is-success">Marca</span>
+											<span class="tag is-dark">'  . $item['marca_producto']  . '</span>
+										</div>
+										<div class="tags has-addons">
 
-                            $pagina_activa = null;
-                            if($i + 1 == $pagina){ $pagina_activa = 'active'; }
+										<span class="tag is-primary">Tipo</span>
+										<span class="tag is-dark">'  . $item['tipo_producto']  . '</span>
 
-                            echo '
-                                <li class="page-item '. $pagina_activa .'"><a class="page-link" href="'. HTTP .'/inventario/buscar/'. ($i + 1) .'?busqueda='. $busqueda_url .'">'. ($i + 1) .'</a></li>
-                            ';
-                        }
+										</div>
+									</div>
+									</div>
+									</a>';
+								}
+							}else{
 
-                        ?>
 
-                        <li class="page-item <?php echo $siguiente; ?>">
-                        <a class="page-link" href="<?php echo HTTP ?>/inventario/buscar/<?php echo $siguiente_link; ?>?busqueda=<?php echo $busqueda_url ?>">Siguiente</a>
-                        </li>
-                    </ul>
-                </div>
+								echo'
+								<div class="card-body center font-weight-bold text-center">
+								No tenemos ningún resultado para su búsqueda.
+								</div>
+
+								';
+							}
+							?>
+						</p>
+
+
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column pagination is-centered is-rounded">
+
+
+						<ul class="pagination-list">
+
+							<?php
+
+							for($i = 0; $i < $paginacion; $i++){
+
+								$pagina_activa = null;
+								if($i + 1 == $pagina){ $pagina_activa = 'is-current'; }
+
+								echo '
+								<li><a class="pagination-link '. $pagina_activa .'" href="'. HTTP .'/inventario/buscar/'. ($i + 1) .'?busqueda='. $busqueda_url .'">'. ($i + 1) .'</a></li>
+								';
+							}
+
+							?>
+						</ul>
+
+						<a href="<?php echo HTTP ?>/inventario/buscar/<?php echo $anterior_link; ?>?busqueda=<?php echo $busqueda_url ?>" class="pagination-previous  <?php echo $anterior; ?>">Anterior</a>
+						<a href="<?php echo HTTP ?>/inventario/buscar/<?php echo $siguiente_link; ?>?busqueda=<?php echo $busqueda_url ?>" class="pagination-next <?php echo $siguiente; ?>">Siguiente</a>
+
+					</div>
+				</div>
             </div>
         </div>
+    </div>
+
+
+
     </div>
 </main>
 

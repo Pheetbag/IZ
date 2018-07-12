@@ -1,4 +1,4 @@
-<?php include_head('CDA - Inventario'); ?>
+<?php include_head('Inventario | IZ'); ?>
 <link rel="stylesheet" href="<?php echo HTTP ?>/vistas/inventario/style.css?v=0.8">
 <link rel="stylesheet" href="<?php echo HTTP ?>/vistas/inventario/producto.css?v=0.2">
 </head>
@@ -13,173 +13,76 @@
 
             <div class="row mb-0">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                    <a href="<?php echo HTTP ?>/inventario/producto/<?php echo $resultado['codigo_producto'] ?>" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="button is-success">Guardar</button>
+                    <a href="<?php echo HTTP ?>/inventario/producto/<?php echo $resultado['codigo_producto'] ?>" class="button is-dark">Cancelar</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-8">
-                    <div class="card bg-dark text-white">
-                        <h6 class="card-header">Nombre</h6>
-                        <div class="card-body">
-                        <input required type="text" class="form-control bg-light" name="nombre" placeholder="Nombre" value="<?php echo $resultado['nombre_producto'] ?>">
-						<div class="invalid-feedback">
-						  Ingrese un nombre válido.
+
+
+
+
+			<div class="columns">
+				<div class="column">
+
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">
+								Producto
+							</div>
 						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
+						<div class="card-content">
+
+
+							<div class="columns">
+								<strong class="column">Nombre:</strong>
+								<div class="column">
+									<input required type="text" class="form-control bg-light" name="nombre" placeholder="Nombre" value="<?php echo $resultado['nombre_producto'] ?>">
+
+								</div>
+							</div>
+							<div class="columns">
+								<strong class="column">Tipo:</strong>
+								<div class="column">
+
+									<input type="text" class="form-control bg-light" name="tipo" placeholder="Tipo" value="<?php echo $resultado['tipo_producto'] ?>">
+
+								</div>
+							</div>
+							<div class="columns">
+								<strong class="column">Marca:</strong>
+								<div class="column">
+
+									<input type="text" class="form-control bg-light" name="marca" placeholder="Marca" value="<?php echo $resultado['marca_producto'] ?>">
+
+								</div>
+							</div>
+							<div class="columns">
+								<strong class="column">Inventario:</strong>
+								<div class="column">
+
+			                        <input required type="number" class="form-control bg-light" min="0" name="existencias" placeholder="Existencias" value="<?php echo $resultado['existencias'] ?>">
+
+								</div>
+							</div>
+							<div class="columns">
+								<strong class="column">Precio:</strong>
+								<div class="column has-text-success">
+				                    <input type="text" class="form-control bg-light sr-only" min="0" name="modelo" placeholder="Modelo" value="<?php echo $resultado['modelo_producto'] ?>">
+			                        <input required type="number" class="form-control bg-light" step="0.01" name="precio" placeholder="Precio" value="<?php echo $resultado['precio_venta']?>">
+
+								</div>
+							</div>
+
 						</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card bg-dark text-white">
-                        <h6 class="card-header">ID</h6>
-                        <div class="card-body">
-                            <input required type="text" class="form-control" disabled name="id" placeholder="ID" value="<?php echo $resultado['codigo_producto'] ?>">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                        <div class="card bg-dark text-white">
-                            <h6 class="card-header">Tipo</h6>
-                            <div class="card-body">
-                        <input type="text" class="form-control bg-light" name="tipo" placeholder="Tipo" value="<?php echo $resultado['tipo_producto'] ?>">
-						<div class="invalid-feedback">
-						  Ingrese un tipo de producto válido.
-						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card bg-dark text-white">
-                            <h6 class="card-header">Marca</h6>
-                            <div class="card-body">
-                        <input type="text" class="form-control bg-light" name="marca" placeholder="Marca" value="<?php echo $resultado['marca_producto'] ?>">
-						<div class="invalid-feedback">
-						  Ingrese una marca de producto válida.
-						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                        </div>
-                        </div>
-                    </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="card bg-dark text-white">
-                        <h6 class="card-header">Modelo</h6>
-                        <div class="card-body">
-                        <input type="text" class="form-control bg-light" min="0" name="modelo" placeholder="Modelo" value="<?php echo $resultado['modelo_producto'] ?>">
-						<div class="invalid-feedback">
-						  Ingrese un modelo de producto válido.
-						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card bg-dark text-white">
-                        <h6 class="card-header">Existencias</h6>
-                        <div class="card-body">
-                        <input required type="number" class="form-control bg-light" min="0" name="existencias" placeholder="Existencias" value="<?php echo $resultado['existencias'] ?>">
-						<div class="invalid-feedback">
-						  Ingrese un número de existencias válido.
-						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card bg-dark text-white">
-                        <h6 class="card-header">Precio</h6>
-                        <div class="card-body">
-                        <input required type="number" class="form-control bg-light" step="0.01" name="precio" placeholder="Precio" value="<?php echo $resultado['precio_venta']?>">
-						<div class="invalid-feedback">
-						  Ingrese un precio de venta válido.
-						</div>
-						<div class="valid-feedback">
-						  ¡Perfecto!
-						</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+					</div>
+
+				</div>
+			</div>
+
         </form>
 
-		<div class="col-md-6 col-lg-4 container-fluid">
 
-                <h6 class="card-header mb-4">Ultimos movimientos</h6>
-
-				<?php
-
-				if($movimientos == null){
-
-					echo'
-
-						<div class="card-body center font-weight-bold text-center">
-							<div class="ico-no-resultados"></div>
-							No hay movimientos recientes.
-						</div>
-
-					';
-				}else{
-
-					$cantidad_movimientos = count($movimientos);
-
-					for ($i=0; $i < $cantidad_movimientos; $i++) {
-
-						$codigo   = $movimientos[$i]['codigo'];
-						$tipo     = $movimientos[$i]['tipo'];
-						$cantidad = number_format($movimientos[$i]['cantidad'],0,',', ' ');
-						$subtotal = number_format($movimientos[$i]['subtotal'],2,',', '.');
-						$fecha    = $movimientos[$i]['fecha'];
-
-						if($tipo == 'venta'){
-
-							echo '
-							<div class="card text-white bg-danger mb-2">
-								<h6 class="card-header text-center">'. date('d/m/Y',strtotime($fecha)) .'</h6>
-								<div class="card-body text-right">
-									<div class="font-weight-bold">-'. $cantidad .' unidades en las existencias</div>
-									<div class="">SUBTOTAL Bs. '. $subtotal .'</div>
-								</div>
-								<div class="card-footer text-center">
-									<a class="px-5 btn btn-light text-danger" href="'. HTTP .'/facturar/f/'. $codigo .'" role="button">Ver factura</a>
-								</div>
-							</div>';
-						}else if($tipo == 'compra'){
-
-							echo '
-							<div class="card text-white bg-success mb-2">
-								<h6 class="card-header text-center">'. date('d/m/Y',strtotime($fecha)) .'</h6>
-								<div class="card-body text-right">
-									<div class="font-weight-bold">+'. $cantidad .' unidades en las existencias</div>
-									<div class="">SUBTOTAL Bs. '. $subtotal .'</div>
-								</div>
-								<div class="card-footer text-center">
-									<a class="px-5 btn btn-light text-success" href="'. HTTP .'/pedidos/p/'. $codigo .'" role="button">Ver pedido</a>
-								</div>
-							</div>';
-						}
-					}
-				}
-
-				?>
-
-        </div>
     </div>
 
 </main>

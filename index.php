@@ -20,7 +20,7 @@ HTTP contiene el host con el protocolo http, e incluyendo el fichero en el que v
 
 HTTP_PHP se utiliza para generar redirecciones a través de los archivos del codigo, es una variante de HTTP pues php no soporta el protocolo http para navegar a través de arhivos.
 */
-define ("HOST", $_SERVER['HTTP_HOST'] . '/cda');
+define ("HOST", $_SERVER['HTTP_HOST'] . '/iz');
 define ("HTTP", 'http://' . HOST);
 define ("HTTP_PHP", $_SERVER['DOCUMENT_ROOT']. '/');
 

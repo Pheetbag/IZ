@@ -1,4 +1,4 @@
-<?php include_head('CDA - Pedidos'); ?>
+<?php include_head('Pedidos | IZ'); ?>
 
 </head>
 <body>
@@ -6,202 +6,112 @@
 <?php include_header('pedidos','Pedidos'); ?>
 
 <main class="container-fluid nav-spaced full-screen" id="navPush">
-    <div class="row">
-        <div class="col-md-9 col-sm-12">
-            <div class="card mb-4">
-                <h6 class="card-header">Ultimos pedidos</h6>
-                <ul class="list-group list-group-flush">
 
-				<?php
 
-				if ($pedidos == null) {
 
-					echo'
+	<div class="columns">
+		<div class="column">
 
-						<div class="card-body center font-weight-bold text-center">
-							<div class="ico-no-resultados"></div>
-							No se han encontrado resultados.
-						</div>
+			<div class="field is-grouped">
+					<!-- <div class="control"><a href="" class="button is-link">Registrar proveedor</a></div> -->
+				<div class="control"><a href="<?php echo HTTP ?>/registrar/proveedor" class="button is-link">Registrar proveedor</a></div>
+			</div>
 
-					';
-				}else{
+		</div>
+	</div>
 
-					$cantidad_pedidos = count($pedidos);
 
-					for ($i=0; $i < $cantidad_pedidos; $i++) {
+	<div class="columns">
 
-						$codigo    = $pedidos[$i]['codigo_pedido'];
-						$fecha     = date('d/m/Y',strtotime($pedidos[$i]['fecha']));
-						$llegada   = date('d/m/Y',strtotime($pedidos[$i]['fecha_llegada']));
+		<div class="column">
 
-						$rif_div   = explode('-', $pedidos[$i]['codigo_proveedor']);
-						$rif       = $rif_div[0] . '-' . number_format( $rif_div[1] ,0, ',','.');
+			<div class="box">
 
-						$total     = number_format( $pedidos[$i]['total'] ,2,',', '.');
-						$nombre    = $pedidos[$i]['nombre_empresa'];
-						$cantidad  = number_format( $pedidos[$i]['cantidad_productos'] ,0,',', ' ');
+				<div class="columns">
 
-						echo '
+					<div class="column">
+						<H1 class="subtitle">Proveedores</H1>
+					</div>
 
-						<a href="'.   HTTP.'/pedidos/p/'. $codigo .'" class="list-group-item list-group-item-action container-fluid">
-							<div class="row">
-								<div class="col-12 col-sm-4 left align-items-center align-items-sm-start">
-									<div class="font-weight-bold">'. $nombre .'</div>
-									<div>'. $rif .'</div>
-									<div>Pedido #'. $codigo .'</div>
+				</div>
+
+				<div class="columns">
+					<div class="column">
+
+						<?php
+
+						if ($proveedores == null) {
+
+							echo'
+
+								<div class="card-body center font-weight-bold text-center">
+									No hay proveedores guardados.
 								</div>
-								<div class="col-6 col-sm-4 d-flex flex-column justify-content-around">
-									<div class="text-muted">Emitido: '. $fecha .'</div>
-									<div class="text-muted">Llegada: '. $llegada .'</div>
-								</div>
-								<div class="col-6 col-sm-4 d-flex flex-column justify-content-around">
-									<div class="producto-precio text-success font-weight-bold">Total Bs. '. $total .'</div>
-									<div class="producto-existencias text-muted">Productos adquiridos: '. $cantidad .'</div>
-								</div>
-							</div>
-						</a>
 
-						';
-					}
+							';
+						}else{
 
-				}
+							$cantidad_proveedores = count($proveedores);
 
-				?>
+							for ($i=0; $i < $cantidad_proveedores; $i++) {
 
-                </ul>
-
-                <div class="card-footer text-muted text-center">
-					<ul class="pagination justify-content-center m-0">
-                        <li class="page-item">
-                        <a class="page-link" href="<?php echo HTTP ?>/pedidos/todos">Ver todos</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-			<div class="card mb-4">
-                <h6 class="card-header">Proveedores</h6>
-                <ul class="list-group list-group-flush">
-
-				<?php
-
-				if ($proveedores == null) {
-
-					echo'
-
-						<div class="card-body center font-weight-bold text-center">
-							<div class="ico-no-resultados"></div>
-							No se han encontrado resultados.
-						</div>
-
-					';
-				}else{
-
-					$cantidad_proveedores = count($proveedores);
-
-					for ($i=0; $i < $cantidad_proveedores; $i++) {
-
-						$nombre    = $proveedores[$i]['nombre_empresa'];
-						$codigo    = $proveedores[$i]['rif'];
-						$rif_div   = explode('-', $proveedores[$i]['rif']);
-						$rif       = $rif_div[0] . '-' . number_format( $rif_div[1] ,0, ',','.');
-						$direccion = $proveedores[$i]['direccion'];
-						$telefono  = $proveedores[$i]['telefono'];
+								$nombre    = $proveedores[$i]['nombre_empresa'];
+								$codigo    = $proveedores[$i]['rif'];
+								$rif_div   = explode('-', $proveedores[$i]['rif']);
+								$rif       = $rif_div[0] . '-' . number_format( $rif_div[1] ,0, ',','.');
+								$direccion = $proveedores[$i]['direccion'];
+								$telefono  = $proveedores[$i]['telefono'];
 
 
-						echo'
-						<a href="'. HTTP .'/pedidos/proveedor/'. $codigo .'" class="list-group-item list-group-item-action container-fluid">
-                            <div class="row">
-                                <div class="col-12 col-sm-4 left align-items-center align-items-sm-start">
-                                    <div class="font-weight-bold">'. $nombre .'</div>
-                                    <div>'. $rif .'</div>
-                                </div>
-                                <div class="col-6 col-sm-4 d-flex align-items-center flex-column justify-content-around align-items-end">
-                                    <div class="text-muted">'. $direccion .'</div>
+								echo'
+								<a href="'. HTTP .'/pedidos/proveedor/'. $codigo .'" class="list-group-item list-group-item-action container-fluid">
+		                            <div class="row">
+		                                <div class="col-12 col-sm-4 left align-items-center align-items-sm-start">
+		                                    <div class="font-weight-bold">'. $nombre .'</div>
+		                                    <div>'. $rif .'</div>
+		                                </div>
+		                                <div class="col-6 col-sm-4 d-flex align-items-center flex-column justify-content-around align-items-end">
+		                                    <div class="text-muted">'. $direccion .'</div>
 
-                                </div>
-                                <div class="col-6 col-sm-4 d-flex align-items-center flex-column justify-content-around align-items-end">
-                                    <div class="text-muted">'. $telefono .'</div>
-                                </div>
-                            </div>
-                        </a>
-						';
+		                                </div>
+		                                <div class="col-6 col-sm-4 d-flex align-items-center flex-column justify-content-around align-items-end">
+		                                    <div class="text-muted">'. $telefono .'</div>
+		                                </div>
+		                            </div>
+		                        </a>
+								';
 
-					}
+							}
 
-				}
+						}
 
-				 ?>
+						 ?>
 
-                </ul>
-
-                <div class="card-footer text-muted text-center">
-					<ul class="pagination justify-content-center m-0">
-                        <li class="page-item">
-                        <a class="page-link" href="<?php echo HTTP ?>/pedidos/proveedores">Ver todos</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+						</ul>
+						</p>
 
 
-        </div>
-        <div class="col-md-3 col-sm-12 mb-4">
+					</div>
+				</div>
 
-			<?php
+				<div class="columns">
+					<div class="column pagination is-centered is-rounded">
 
-			if($_SESSION['usuario']['rango'] < 3) {
+						<a href="<?php echo HTTP ?>/pedidos/proveedores" class="pagination-next">Ver todos</a>
 
-				echo '
+					</div>
+				</div>
+			</div>
+			</div>
 
-				<div class="card mb-4">
-	                <h6 class="card-header">Registrar</h6>
-	                <div class="card-body">
-	                    <a class="btn btn-primary mt-3 d-block" href="'. HTTP .'/registrar/proveedor">Nuevo proveedor</a>
-	                    <a class="btn btn-primary mt-3 d-block" href="'. HTTP .'/registrar/pedido">Nuevo pedido</a>
-	                </div>
-	            </div>
-				';
-			}
-
-			?>
+		</div>
+	</div>
 
 
-			<div class="card mb-4">
-                <h6 class="card-header">Buscar pedido</h6>
-                <form  novalidate method="post" action="<?php echo HTTP ?>/pedidos/buscar/pedido" class="card-body validar">
-                    <div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">#</span>
-						</div>
-                        <input required type="number" name="busqueda" class="form-control" placeholder="Codigo">
-						<div class="invalid-feedback">
-						  Ingrese el codigo de pedido a buscar.
-						</div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3 btn-block">Buscar</button>
-                </form>
-            </div>
-
-            <div class="card">
-                <h6 class="card-header">Buscar proveedor</h6>
-                <form novalidate method="post" action="<?php echo HTTP ?>/pedidos/buscar/proveedor" class="card-body validar">
-                    <div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">J-</span>
-						</div>
-                        <input required type="number" name="busqueda" class="form-control" placeholder="Rif">
-						<div class="invalid-feedback">
-						  Ingrese el rif del proveedor a buscar.
-						</div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3 btn-block" href="#">Buscar</button>
-                </form>
-            </div>
-        </div>
 
 
-    </div>
+
+
 </main>
 
 <?php include_footer(); ?>

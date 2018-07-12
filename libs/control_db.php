@@ -26,7 +26,7 @@ function crear_db(){
 	SET AUTOCOMMIT = 0;
 	START TRANSACTION;
 	SET time_zone = "+00:00";
-	CREATE DATABASE IF NOT EXISTS `cda` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+	CREATE DATABASE IF NOT EXISTS `iz` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 	');
 
 	$conexion->close();
