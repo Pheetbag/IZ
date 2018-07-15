@@ -1,4 +1,4 @@
-<?php include_head('CDA - Ingresar'); ?>
+<?php include_head('Entrar | IZ'); ?>
 <link rel="stylesheet" href="<?php echo HTTP ?>/vistas/ingresar/style.css?v=0.2">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
