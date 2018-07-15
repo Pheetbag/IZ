@@ -1,6 +1,6 @@
 <?php
 
-$nombre_empresa = 'Inversiones Zamora';
+$nombre_empresa = 'Inversiones Zamora MKS, C. A.';
 
 function include_head($title = 'IZ'){
     echo '
