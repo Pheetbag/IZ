@@ -1,4 +1,4 @@
-<?php include_head('CDA - Registrar'); ?>
+<?php include_head('Registrar proveedor | IZ'); ?>
 <link rel="stylesheet" href="<?php echo HTTP ?>/vistas/registrar/style.css?v=0.2">
 </head>
 <body>
