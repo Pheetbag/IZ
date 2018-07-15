@@ -10,35 +10,22 @@
 
 <div class="contenedor">
 
-    <div class="logo mb-4"></div>
 
-    <div class="card alerta animated slideInLeft text-white bg-danger mb-3 <?php echo $vista_errores; ?>" id="alerta-error" style="width: 20rem;">
+    <div class="box" id="login" style="width: 20rem;">
         <div class="card-body">
-            <p class="card-text"> <?php echo $vista_errores_desc; ?> </p>
-        </div>
-    </div>
-
-    <div class="card" id="login" style="width: 20rem;">
-        <div class="card-body">
-            <h5 class="card-title">Ingresar</h5>
+            <h5 class="card-title">Entrar</h5>
             <p class="card-text">
                 <form method='post' action='ingresar/validar'>
 
                     <div class="form-group">
                         <input type="text" class="form-control <?php echo $vista_errores; ?>" id="usuario" name="usuario" aria-describedby="usuarioHelp" placeholder="Usuario">
-                        <small id="usuarioHelp" class="form-text text-muted">El nombre de usuario es sensible a mayúsculas y minúsculas.</small>
                     </div>
 
                     <div class="form-group">
                         <input type="password" class="form-control <?php echo $vista_errores; ?>" id="contraseña" name="contraseña" placeholder="Contraseña">
                     </div>
 
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="remember">
-                        <label class="form-check-label" for="remember">Recuerdame</label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-block btn-lg">Entrar</button>
+                    <button type="submit" class="button is-primary is-large is-fullwidth">Entrar</button>
                 </form>
             </p>
         </div>

@@ -42,8 +42,7 @@
 							echo'
 
 								<div class="card-body center font-weight-bold text-center">
-									<div class="ico-no-resultados"></div>
-									No se han encontrado resultados.
+									No hay clientes guardados.
 								</div>
 
 							';
