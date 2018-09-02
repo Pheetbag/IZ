@@ -11,7 +11,7 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `iz` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 ALTER DATABASE `iz` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `cda`;
+USE `iz`;
 
 /*---------------------------------------------------------------------------*/
 
@@ -31,7 +31,6 @@ USE `cda`;
 	  `nombre_producto` varchar(100) NOT NULL,
 	  `tipo_producto` varchar(100) NOT NULL,
 	  `marca_producto` varchar(100) NOT NULL,
-	  `modelo_producto` varchar(100) NOT NULL,
 	  `precio_venta` decimal(17,2) NOT NULL,
 	  `existencias` int(11) NOT NULL,
 	  PRIMARY KEY (`codigo_producto`)
@@ -60,7 +59,7 @@ USE `cda`;
 	DROP TABLE IF EXISTS `facturacion`;
 	CREATE TABLE IF NOT EXISTS `facturacion` (
 	  `codigo_factura` int(11) NOT NULL AUTO_INCREMENT,
-	  `fecha_venta` date NOT NULL,
+	  `fecha_venta` datetime NOT NULL,
 	  `ci_cliente` varchar(12),
 	  `subtotal` decimal(17,2) NOT NULL,
 	  `iva` decimal(17,2) NOT NULL,
@@ -77,11 +76,9 @@ USE `cda`;
 	CREATE TABLE IF NOT EXISTS `pedidos` (
 	  `codigo_pedido` int(11) NOT NULL AUTO_INCREMENT,
 	  `codigo_proveedor` varchar(20),
-	  `fecha` date NOT NULL,
-	  `fecha_llegada` date NOT NULL,
+	  `fecha` datetime NOT NULL,
+	  `fecha_llegada` datetime NOT NULL,
 	  `subtotal` decimal(17,2) NOT NULL,
-	  `iva` decimal(17,2) NOT NULL,
-	  `total` decimal(17,2) NOT NULL,
 	  PRIMARY KEY (`codigo_pedido`),
 	  KEY `codigo_proveedor` (`codigo_proveedor`),
 	  FOREIGN KEY (`codigo_proveedor`)
