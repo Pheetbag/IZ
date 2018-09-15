@@ -92,7 +92,7 @@ class inventario{
                 case 'guardar':
 
                     if(isset($_POST['nombre'])){
-                        $consultar -> producto_actualizar($id, $_POST['nombre'], $_POST['tipo'], $_POST['marca'],$_POST['modelo'], $_POST['existencias'], $_POST['precio']);
+                        $consultar -> producto_actualizar($id, $_POST['nombre'], $_POST['tipo'], $_POST['marca'], $_POST['existencias'], $_POST['precio']);
 
                         $resultado = $consultar -> producto($id);
                         require $this->vista . 'producto-actualizado.php';

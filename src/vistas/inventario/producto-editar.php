@@ -67,7 +67,6 @@
 							<div class="columns">
 								<strong class="column">Precio:</strong>
 								<div class="column has-text-success">
-				                    <input type="text" class="form-control bg-light sr-only" min="0" name="modelo" placeholder="Modelo" value="<?php echo $resultado['modelo_producto'] ?>">
 			                        <input required type="number" class="form-control bg-light" step="0.01" name="precio" placeholder="Precio" value="<?php echo $resultado['precio_venta']?>">
 
 								</div>
