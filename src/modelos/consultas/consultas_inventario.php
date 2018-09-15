@@ -100,15 +100,14 @@ class consultas_inventario{
         $consulta = $this->conexion->get_consulta($sql, $sql_values);
     }
 
-    public function producto_actualizar($id, $nombre, $tipo, $marca, $modelo, $existencias, $precio){
+    public function producto_actualizar($id, $nombre, $tipo, $marca, $existencias, $precio){
 
-        $sql= "UPDATE `productos` SET `nombre_producto`= :nombre,`tipo_producto`= :tipo,`marca_producto`= :marca,`modelo_producto`= :modelo,`existencias`= :existencias, `precio_venta`= :precio WHERE codigo_producto = :id";
+        $sql= "UPDATE `productos` SET `nombre_producto`= :nombre,`tipo_producto`= :tipo,`marca_producto`= :marca, `existencias`= :existencias, `precio_venta`= :precio WHERE codigo_producto = :id";
 
         $sql_values = [
             ':nombre'     => $nombre,
             ':tipo'       => $tipo,
             ':marca'      => $marca,
-            'modelo'      => $modelo,
             'existencias' => $existencias,
             ':precio'     => $precio,
             ':id'         => $id

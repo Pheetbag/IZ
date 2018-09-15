@@ -12,12 +12,11 @@ class consultas_registrar{
 
     public function producto($nombre, $tipo, $marca, $modelo, $existencias, $precio){
 
-        $sql = "INSERT INTO `productos` (`nombre_producto`,`tipo_producto`,`marca_producto`,`modelo_producto`,`existencias`, `precio_venta`) VALUES (:nombre, :tipo, :marca, :modelo, :existencias, :precio);";
+        $sql = "INSERT INTO `productos` (`nombre_producto`,`tipo_producto`,`marca_producto`,`existencias`, `precio_venta`) VALUES (:nombre, :tipo, :marca, :existencias, :precio);";
         $sql_values = [
             ':nombre'      => $nombre,
             ':tipo'        => $tipo,
             ':marca'       => $marca,
-            ':modelo'      => $modelo,
             ':existencias' => $existencias,
             ':precio'      => $precio
         ];
